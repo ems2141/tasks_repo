@@ -26,4 +26,11 @@ describe TasksRepo do
     @tasks.update(1, name: 'walk dog', complete: false)
     expect(@tasks.all).to eq [{:id => 1, :name => 'walk dog', :complete => false}]
   end
+
+  it "can delete tasks" do
+    @tasks.create(name: 'gSchool homework')
+    @tasks.create(name: 'grocery store')
+    @tasks.delete(2)
+    expect(@tasks.all).to eq [{:id => 1, :name => 'gSchool homework', :complete => false}]
+  end
 end
