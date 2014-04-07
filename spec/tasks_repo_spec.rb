@@ -21,4 +21,9 @@ describe TasksRepo do
                                {:id => 2, :name => 'grocery store', :complete => false}])
   end
 
+  it "can update tasks" do
+    @tasks.create(name: 'gSchool homework')
+    @tasks.update(1, name: 'walk dog', complete: false)
+    expect(@tasks.all).to eq [{:id => 1, :name => 'walk dog', :complete => false}]
+  end
 end

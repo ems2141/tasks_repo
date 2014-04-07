@@ -12,4 +12,8 @@ class TasksRepo
   def all
     @tasks_table.to_a
   end
+
+  def update(id, name)
+    @tasks_table.where(:id => id).update(name)
+  end
 end
