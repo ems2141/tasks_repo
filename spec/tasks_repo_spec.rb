@@ -6,25 +6,19 @@ describe TasksRepo do
   before do
     DB.create_table! :tasks do
       primary_key :id
-      String :description
-      Boolean :completed, default: false
-    end
-  end
+      String :name
+      Boolean :complete, default: false
 
+    end
+    @tasks = TasksRepo.new(DB)
+  end
 
   it "can create tasks" do
-
-    repository = TasksRepo.new(DB)
-
-    description = "do #{rand(2..20)} things"
-    repository.create(description: description)
-    tasks = repository.all
-    expect(tasks).to eq(
-                         [
-                             {id: 1, description: description, completed: false}
-                         ]
-                     )
+    @tasks.create(name: 'gSchool homework')
+    @tasks.create(name: 'grocery store')
+    expect(@tasks.all).to eq(
+                              [{:id => 1, :name => 'gSchool homework', :complete => false},
+                               {:id => 2, :name => 'grocery store', :complete => false}])
   end
-
 
 end
