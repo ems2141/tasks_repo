@@ -8,7 +8,6 @@ describe TasksRepo do
       primary_key :id
       String :name
       Boolean :complete, default: false
-
     end
     @tasks = TasksRepo.new(DB)
   end
@@ -33,4 +32,10 @@ describe TasksRepo do
     @tasks.delete(2)
     expect(@tasks.all).to eq [{:id => 1, :name => 'gSchool homework', :complete => false}]
   end
+
+  it "can find a task by id" do
+    @tasks.create(name: 'walk dog')
+    expect(@tasks.find(1)).to eq [{:id => 1, :name => 'walk dog', :complete => false}]
+  end
+
 end

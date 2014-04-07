@@ -20,4 +20,8 @@ class TasksRepo
   def delete(id)
     @tasks_table.where(:id => id).delete
   end
+
+  def find(id)
+    @tasks_table.where(:id => id).to_a
+  end
 end
